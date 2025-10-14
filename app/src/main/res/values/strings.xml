@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Freela</string>
+    <string name="welcome">Bem Vindo!</string>
+    <string name="signup">CADASTRAR</string>
+    <string name="login">ENTRAR</string>
+    <string name="welcomeback">Bem Vindo de volta!</string>
+</resources>
