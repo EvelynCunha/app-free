@@ -4,4 +4,27 @@
     <string name="signup">CADASTRAR</string>
     <string name="login">ENTRAR</string>
     <string name="welcomeback">Bem Vindo de volta!</string>
+    <string name="register_button_back">Voltar</string>
+    <string name="register_dados_pessoais">Dados Pessoais</string>
+    <string name="register_nome">Nome completo</string>
+    <string name="register_data_nascimento">Data de nascimento</string>
+    <string name="register_cpf">CPF</string>
+    <string name="register_email">E-mail</string>
+    <string name="register_confirme_email">Confirme seu  e-mail</string>
+    <string name="register_telefone">Número com DD</string>
+    <string name="register_concordar_termo">Li e estou de acordo com o </string>
+    <string name="register_politica_de_privacidade">Termo de Uso e Política de Privacidade</string>
+    <string name="register_button_continuar">CONTINUAR</string>
+    <string name="register_address">Endereço Pessoal</string>
+    <string name="register_address_cep">CEP</string>
+    <string name="register_address_endereco">Endereço</string>
+    <string name="register_address_numero">Nº</string>
+    <string name="register_address_bairro">Bairro</string>
+    <string name="register_address_cidade">Cidade</string>
+    <string name="register_address_estado">Estado</string>
+    <string name="register_password_usuario">Dados do Usuário</string>
+    <string name="register_password_senha">Senha</string>
+    <string name="register_password_confirmar_senha">Confirmar Senha</string>
+    <string name="register_password_email">E-mail</string>
+    <string name="register_password_confirmar_email">Confirmar E-mail</string>
 </resources>
