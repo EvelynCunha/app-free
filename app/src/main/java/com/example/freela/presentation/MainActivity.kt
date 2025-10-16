@@ -12,18 +12,25 @@ import com.example.freela.R
 class MainActivity : AppCompatActivity() {
 
     private lateinit var buttonRegister: AppCompatButton
+    private lateinit var buttonLogin: AppCompatButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        buttonRegister = findViewById(R.id.button_signup)
+        buttonRegister = findViewById(R.id.signupButton)
+        buttonLogin = findViewById(R.id.loginButton)
 
         buttonRegister.setOnClickListener {
 
             //Para iniciar uma tela partindo de outra tela, utiliza-se o intent
             val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
+        buttonLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 

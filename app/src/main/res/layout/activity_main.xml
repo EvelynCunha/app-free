@@ -12,8 +12,7 @@
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +38,7 @@
             android:layout_marginTop="123dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/group_4___logo" />
+            app:srcCompat="@drawable/logo_free" />
 
         <TextView
             android:id="@+id/textView"
@@ -55,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_signup"
+            android:id="@+id/signupButton"
             style="@style/button_primary_style"
             android:layout_width="match_parent"
             android:layout_height="54dp"
@@ -63,12 +62,12 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="@string/signup"
-            app:layout_constraintBottom_toTopOf="@+id/button_login"
+            app:layout_constraintBottom_toTopOf="@+id/loginButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_login"
+            android:id="@+id/loginButton"
             style="@style/button_secundary_style"
             android:layout_width="match_parent"
             android:layout_height="54dp"
