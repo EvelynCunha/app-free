@@ -38,7 +38,7 @@
             android:layout_marginTop="123dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo_free" />
+            app:srcCompat="@drawable/group_4___logo2" />
 
         <TextView
             android:id="@+id/textView"
