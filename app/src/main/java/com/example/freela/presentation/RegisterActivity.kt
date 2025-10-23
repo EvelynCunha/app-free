@@ -2,14 +2,31 @@ package com.example.freela.presentation
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.CheckBox
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import androidx.annotation.CheckResult
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.freela.R
+import com.example.freela.domain.usecase.ValidateBirthDateUseCase
+import com.example.freela.domain.usecase.ValidateCpfUseCase
+import com.example.freela.domain.usecase.ValidateEmailUseCase
+import com.example.freela.domain.usecase.ValidateNameUseCase
+import com.example.freela.domain.usecase.ValidatePhoneUseCase
+import com.example.freela.domain.usecase.addCpfMask
+import com.example.freela.domain.usecase.addDateMask
+import com.example.freela.domain.usecase.addPhoneMask
 import com.google.android.material.textfield.TextInputEditText
+import com.example.freela.viewModel.RegisterViewModel
+import com.example.freela.viewModel.RegisterViewModelFactory
+import kotlin.getValue
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -17,8 +34,21 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var inputDataName: TextInputEditText
     private lateinit var inputDataNascimento: TextInputEditText
     private lateinit var inputDataCpf: TextInputEditText
+    private lateinit var inputDataEmail: TextInputEditText
+    private lateinit var inputDataConfirme: TextInputEditText
     private lateinit var inputDataTelefone: TextInputEditText
     private lateinit var registerDataBack: ImageView
+    private lateinit var checkBox: CheckBox
+
+    private val viewModel: RegisterViewModel by viewModels {
+        RegisterViewModelFactory(
+            ValidateNameUseCase(),
+            ValidateBirthDateUseCase(),
+            ValidateCpfUseCase(),
+            ValidateEmailUseCase(),
+            ValidatePhoneUseCase()
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,15 +60,50 @@ class RegisterActivity : AppCompatActivity() {
         inputDataNascimento = findViewById(R.id.registerEditNascimento)
         inputDataCpf = findViewById(R.id.registerEditCpf)
         inputDataTelefone = findViewById(R.id.registerEditTelefone)
+        inputDataEmail = findViewById(R.id.dataEditEmail)
+        inputDataConfirme = findViewById(R.id.dataConfirmeEmail)
         registerDataBack = findViewById(R.id.registerDataBack)
+        checkBox = findViewById(R.id.checkBox)
+
+
+        inputDataNascimento.addDateMask()
+        inputDataCpf.addCpfMask()
+        inputDataTelefone.addPhoneMask()
 
         registerDataBack.setOnClickListener {
             finish()
         }
 
         buttonDataNext.setOnClickListener {
-            val intent = Intent(this, RegisterAddressActivity::class.java)
-            startActivity(intent)
+            val name = inputDataName.text.toString()
+            val birthDate = inputDataNascimento.text.toString()
+            val numberCpf = inputDataCpf.text.toString()
+            val email = inputDataEmail.text.toString()
+            val confirmarEmail = inputDataConfirme.text.toString()
+            val phone = inputDataTelefone.text.toString()
+            val isChecked = checkBox.isChecked
+
+            viewModel.isErrorValid(name, birthDate, numberCpf, email, confirmarEmail,phone, isChecked)
+            viewModel.allValid.observe(this) { isValid ->
+                if (isValid == true) {
+                    // Ação de sucesso: Inicia a próxima Activity
+                    val intent = Intent(this, RegisterAddressActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        }
+        viewModel.errorInput.observe(this) { value ->
+            val alert = AlertDialog.Builder(this)
+                .setTitle("Erros nos seguintes campos:")
+                .setMessage(value)
+                .setPositiveButton("OK") { dialog, _ ->
+                    // Ação ao confirmardialog.dismiss()
+                }
+                .setNegativeButton("Cancelar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .setCancelable(false) // impede fechar tocando fora ou botão back.show()
+            alert.show()
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
