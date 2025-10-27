@@ -3,11 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:fitsSystemWindows="false"
+    android:clipToPadding="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize"
     tools:context=".presentation.RegisterAddressActivity">
+
     <ImageView
-        android:id="@+id/registerAddressBack"
+        android:id="@+id/register_address_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -17,19 +21,19 @@
         app:srcCompat="@drawable/arrow_left_blue" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/text_view_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="42dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="@string/register_address"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerAddressBack" />
+        app:layout_constraintTop_toBottomOf="@+id/register_address_back" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/registerInputCep"
+        android:id="@+id/register_input_cep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -37,28 +41,36 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        app:layout_constraintTop_toBottomOf="@+id/text_view_3">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/registerEditCep"
+            android:id="@+id/register_edit_cep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_input_primary"
             android:hint="@string/register_address_cep"
             android:textColor="@color/grey" />
-
     </com.google.android.material.textfield.TextInputLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/register_input_cep"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:orientation="horizontal"
-        app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerInputCep"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/register_input_cep">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/registerInputEndereco"
@@ -78,19 +90,16 @@
                 android:background="@drawable/bg_input_primary"
                 android:hint="@string/register_address_endereco"
                 android:textColor="@color/grey" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/registerInputNumero"
-            android:layout_height="wrap_content"
             android:layout_width="76dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:maxWidth="76dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ChildInNonViewGroup">
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/registerEditNumero"
@@ -99,13 +108,11 @@
                 android:background="@drawable/bg_input_primary"
                 android:hint="@string/register_address_numero"
                 android:textColor="@color/grey" />
-
         </com.google.android.material.textfield.TextInputLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/registerInputBairro"
+        android:id="@+id/registerInputComplemento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -116,33 +123,33 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/registerEditComplemento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input_primary"
+            android:hint="@string/register_address_complemento"
+            android:textColor="@color/grey" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/registerInputBairro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerInputComplemento">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/registerEditBairro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_input_primary"
             android:hint="@string/register_address_bairro"
             android:textColor="@color/grey" />
-
     </com.google.android.material.textfield.TextInputLayout>
-
-
-    <TextView
-        android:id="@+id/registerEditCidade"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/bg_input_primary"
-        android:drawableEnd="@drawable/search"
-        android:gravity="start|center"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:text="@string/register_address_cidade"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerInputBairro" />
 
     <TextView
         android:id="@+id/registerEditEstado"
@@ -160,8 +167,25 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerEditCidade" />
+        app:layout_constraintTop_toBottomOf="@+id/registerInputBairro" />
 
+    <TextView
+        android:id="@+id/registerEditCidade"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_input_primary"
+        android:drawableEnd="@drawable/search"
+        android:gravity="start|center"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/register_address_cidade"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerEditEstado" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonNextAddress"
@@ -169,10 +193,11 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="79dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="80dp"
         android:text="@string/register_button_continuar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/registerEditCidade"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,30 +13,48 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Freela">
-        <activity
-            android:name=".presentation.PasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.RegisterAddressActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.RegisterActivity"
-            android:exported="false" />
+
+        <!-- Alterado para o Splash ser a "tela inicial" da aplicação -->
         <activity
             android:name=".presentation.SplashActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Demais telas do app -->
+        <activity
+            android:name=".presentation.MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".presentation.LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".presentation.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Freela.Light" />
+
+        <activity
+            android:name=".presentation.RegisterAddressActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Freela.Light" />
+
+        <activity
+            android:name=".presentation.PasswordActivity"
+            android:exported="false" />
+
+        <!-- Novas telas adicionadas, apenas para evitar a quebra, enquanto n forem criadas -->
+        <activity
+            android:name=".presentation.ForgotPasswordActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".presentation.HomeActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
