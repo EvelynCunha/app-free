@@ -1,7 +1,7 @@
 package com.example.freela.repository.addressrepository
 
 import com.example.freela.repository.response.ViaCepResponse
-import com.example.freela.repository.response.CityReponse
+import com.example.freela.repository.response.CityResponse
 import com.example.freela.repository.response.StateResponse
 
 class AddressRepository {
@@ -19,7 +19,7 @@ class AddressRepository {
         return if (response.isSuccessful) response.body() else null
     }
 
-    suspend fun buscarCidades(uf: String): List<CityReponse>? {
+    suspend fun buscarCidades(uf: String): List<CityResponse>? {
         val response = ibgeApi.getCidades(uf)
         return if (response.isSuccessful) response.body() else null
     }

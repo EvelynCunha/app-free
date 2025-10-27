@@ -20,7 +20,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freela.R
-import com.example.freela.repository.response.CityReponse
+import com.example.freela.repository.response.CityResponse
 import com.example.freela.repository.response.StateResponse
 import com.example.freela.viewModel.RegisterAddressViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -219,7 +219,7 @@ class RegisterAddressActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun showBottomSheetCidades(cidades: List<CityReponse>) {
+    private fun showBottomSheetCidades(cidades: List<CityResponse>) {
         val dialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.bottomsheet_list, null)
         val recycler = view.findViewById<RecyclerView>(R.id.recyclerView)

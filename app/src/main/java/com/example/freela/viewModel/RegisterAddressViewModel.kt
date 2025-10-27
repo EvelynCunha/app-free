@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.freela.repository.response.ViaCepResponse
-import com.example.freela.repository.response.CityReponse
+import com.example.freela.repository.response.CityResponse
 import com.example.freela.repository.response.StateResponse
 import com.example.freela.repository.addressrepository.AddressRepository
 import kotlinx.coroutines.launch
@@ -29,8 +29,8 @@ class RegisterAddressViewModel : ViewModel() {
     private val _estados = MutableLiveData<List<StateResponse>>()
     val estados: LiveData<List<StateResponse>> = _estados
 
-    private val _cidades = MutableLiveData<List<CityReponse>>()
-    val cidades: LiveData<List<CityReponse>> = _cidades
+    private val _cidades = MutableLiveData<List<CityResponse>>()
+    val cidades: LiveData<List<CityResponse>> = _cidades
 
     val listError = mutableListOf<String>()
 
