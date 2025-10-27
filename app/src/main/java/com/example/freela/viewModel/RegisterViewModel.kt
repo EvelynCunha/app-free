@@ -29,7 +29,7 @@ class RegisterViewModel(
     fun isCpfValid(cpf: String): Boolean = validateCpfUseCase(cpf)
     fun isEmailValid(email: String): Boolean = validateEmailUseCase(email)
     fun isConfirmaEmailValid(confirmaEmail: String, email: String): Boolean {
-        return confirmaEmail == email
+        return confirmaEmail.isNotBlank() && confirmaEmail == email
     }
     fun isCheckboxValid(isChecked: Boolean): Boolean {
         return isChecked
