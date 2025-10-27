@@ -29,6 +29,7 @@
     <string name="register_password_email">E-mail</string>
     <string name="register_password_confirmar_email">Confirmar E-mail</string>
     <string name="password_field">Campo de Senha</string>
+    <string name="register_address_complemento">Complemento</string>
     <string name="new_user">
     <font color="#050505">Novo usuário?</font> <font color="#0451FF">Cadastre-se</font>
 </string>

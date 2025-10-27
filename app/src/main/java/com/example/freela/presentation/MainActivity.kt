@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         buttonRegister.setOnClickListener {
 
             //Para iniciar uma tela partindo de outra tela, utiliza-se o intent
-            val intent = Intent(this, RegisterActivity::class.java)
+            val intent = Intent(this, RegisterAddressActivity::class.java)
             startActivity(intent)
         }
 
