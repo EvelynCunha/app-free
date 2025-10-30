@@ -44,12 +44,15 @@
             android:theme="@style/Theme.Freela.Light" />
 
         <activity
-            android:name=".presentation.PasswordActivity"
+            android:name=".presentation.RegisterPasswordActivity"
             android:exported="false" />
 
         <!-- Novas telas adicionadas, apenas para evitar a quebra, enquanto n forem criadas -->
         <activity
             android:name=".presentation.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.PaymentActivity"
             android:exported="false" />
 
         <activity

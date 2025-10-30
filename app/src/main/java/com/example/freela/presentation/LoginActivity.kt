@@ -2,66 +2,101 @@ package com.example.freela.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.InputFilter
-import android.text.TextWatcher
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.example.freela.R
+import com.example.freela.domain.usecase.LoginUseCase
+import com.example.freela.repository.auth.AuthRepository
 import com.example.freela.databinding.ActivityLoginBinding
+import com.example.freela.viewModel.LoginViewModel
+import com.example.freela.viewModel.LoginViewModelFactory
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-class LoginActivity : AppCompatActivity() {
+
+class LoginActivity : ComponentActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private var isUpdating = false
+    private val viewModel: LoginViewModel by viewModels {
+        LoginViewModelFactory(LoginUseCase(AuthRepository(FirebaseAuth.getInstance())))
+    }
+
+    private var debounceJob: Job? = null
+
+    companion object {
+        private const val USER_NOT_FOUND = "Usuário não encontrado"
+        private const val WRONG_PASSWORD = "Senha incorreta"
+        private const val WRONG_EMAIL = "Email inválido"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonBack.setOnClickListener { finish() }
+        setupListeners()
+        observeViewModel()
+    }
+
+    private fun setupListeners() {
+        binding.btnLogin.setOnClickListener {
+            debounceJob?.cancel()
+            debounceJob = lifecycleScope.launch {
+                delay(500) // debounce
+                handleLogin()
+            }
+        }
 
         binding.tvForgotPassword.setOnClickListener {
             startActivity(Intent(this, ForgotPasswordActivity::class.java))
         }
 
-        binding.btnEntrar.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
+        binding.tvRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+    }
+
+    private fun handleLogin() {
+        val email = binding.etEmail.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show()
+            return
         }
 
-        val numbersOnlyFilter = InputFilter { source, _, _, _, _, _ ->
-            val filtered = source.filter { it.isDigit() }
-            if (filtered.length != source.length) {
-                Toast.makeText(this, "Caractere não permitido!", Toast.LENGTH_SHORT).show()
+        viewModel.login(email, password)
+    }
+
+    private fun observeViewModel() {
+        lifecycleScope.launch {
+            viewModel.loading.collect { isLoading ->
+                binding.progressBar.visibility = if (isLoading) android.view.View.VISIBLE else android.view.View.GONE
+                binding.btnLogin.isEnabled = !isLoading
             }
-            filtered
         }
 
-        binding.inputCpf.editText?.filters = arrayOf(numbersOnlyFilter)
+        lifecycleScope.launch {
+            viewModel.loginResult.collect { result ->
+                result?.onSuccess {
+                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                    finish()
+                }?.onFailure { e ->
+                    val message = when ((e as? FirebaseAuthException)?.errorCode) {
+                        "ERROR_USER_NOT_FOUND" -> USER_NOT_FOUND
+                        "ERROR_WRONG_PASSWORD" -> WRONG_PASSWORD
+                        "ERROR_INVALID_EMAIL" -> WRONG_EMAIL
+                        else -> getString(R.string.unexpected_error)
+                    }
 
-        // TextWatcher para formatar CPF enquanto digita, tstar se tá funcionando
-        binding.inputCpf.editText?.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable?) {
-                if (isUpdating) return
-                isUpdating = true
-
-                val digits = s?.toString()?.replace(Regex("[^\\d]"), "") ?: ""
-                val length = digits.length
-                val builder = StringBuilder()
-
-                for (i in 0 until length) {
-                    builder.append(digits[i])
-                    if (i == 2 || i == 5) builder.append('.')
-                    if (i == 8) builder.append('-')
+                    Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
                 }
-
-                val formatted = builder.toString()
-                binding.inputCpf.editText?.setText(formatted)
-                binding.inputCpf.editText?.setSelection(formatted.length.coerceAtMost(formatted.length))
-                isUpdating = false
             }
-        })
+        }
     }
 }
