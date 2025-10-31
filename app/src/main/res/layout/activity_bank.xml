@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.BankActivity">
+
+        <ImageView
+            android:id="@+id/bank_Data_Back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/back_button"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="72dp"
+            android:src="@drawable/arrow_left_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/bank_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="@string/bank_data_back"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bank_Data_Back" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/bank_Input_Name_Bank"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="16dp"
+            app:errorEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bank_Title">
+
+            <TextView
+                android:id="@+id/bank_Edit_Name_Bank"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/bg_input_primary"
+                android:gravity="start|center"
+                android:hint="@string/bank_hint_input"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text=""
+                android:textColorHint="?attr/colorOnTertiary"
+                android:textSize="16sp"
+                app:errorEnabled="false"
+                app:drawableEndCompat="@drawable/arrow_down_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bank_Title" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/bank_Input_Agency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/bank_description_agency"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="16dp"
+            app:errorEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bank_Input_Name_Bank">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/bank_Edit_Agency"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:maxLength="4"
+                android:textColor="?attr/colorOnTertiary"
+                android:background="@drawable/bg_input_primary"
+                android:hint="@string/bank_hint_agency"
+                android:textColorHint="@color/dark_text_grey"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/bank_Input_Account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="16dp"
+            app:errorEnabled="false"
+            android:contentDescription="@string/bank_description_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bank_Input_Agency">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/bank_Edit_Account"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLength="10"
+                android:textColor="?attr/colorOnTertiary"
+                android:background="@drawable/bg_input_primary"
+                android:hint="@string/bank_hint_account"
+                android:textColorHint="@color/dark_text_grey" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/bank_Input_Account_Type"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="16dp"
+            app:endIconDrawable="@drawable/arrow_down_blue"
+            app:errorEnabled="false"
+            app:endIconTint="@color/blue"
+            android:textColor="?attr/colorOnTertiary"
+            android:textColorHint="?attr/colorOnTertiary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bank_Input_Account">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdown_Account_Type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_input_primary"
+                android:textColor="?attr/colorOnTertiary"
+                android:hint="@string/bank_hint_account_type"
+                android:focusable="false"
+                android:inputType="none"
+                android:textColorHint="?attr/colorOnTertiary"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup
+            android:id="@+id/bank_Radio_Group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bank_Input_Account_Type">
+
+            <RadioButton
+                android:id="@+id/bank_Radio_Individual"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/bank_description_individual"
+                android:text="@string/bank_radio_individual" />
+
+            <RadioButton
+                android:id="@+id/bank_Radio_Company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/bank_description_company"
+                android:text="@string/bank_radio_company" />
+        </RadioGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/bank_Input_Pix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            app:errorEnabled="false"
+            android:contentDescription="@string/bank_description_pix"
+            app:layout_constraintBottom_toTopOf="@+id/bank_Button_Next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bank_Radio_Group">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/bank_Edit_Pix"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="?attr/colorOnTertiary"
+                android:background="@drawable/bg_input_primary"
+                android:hint="@string/bank_input_pix"
+                android:textColorHint="@color/dark_text_grey"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bank_Button_Next"
+            style="@style/button_primary_style"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="46dp"
+            android:contentDescription="@string/bank_description_button_next"
+            android:text="@string/register_button_continuar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
