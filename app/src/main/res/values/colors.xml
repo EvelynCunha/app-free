@@ -6,6 +6,7 @@
     <color name="textblue">#0451FF</color>
     <color name="light_grey">#E6EDFF</color>
     <color name="grey">#808080</color>
+    <color name="dark_grey">#565656</color>
     <color name="secundary_grey">#E3E4E4</color>
     <color name="light_blue">#8696BB</color>
     <color name="bg_select">#E6DCF6</color>

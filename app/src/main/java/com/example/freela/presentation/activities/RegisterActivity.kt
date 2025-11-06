@@ -23,6 +23,7 @@ import com.example.freela.domain.usecase.addPhoneMask
 import com.google.android.material.textfield.TextInputEditText
 import com.example.freela.viewModel.RegisterViewModel
 import com.example.freela.viewModel.RegisterViewModelFactory
+import com.google.firebase.auth.FirebaseAuth
 import kotlin.getValue
 
 class RegisterActivity : AppCompatActivity() {
@@ -80,26 +81,43 @@ class RegisterActivity : AppCompatActivity() {
             val phone = inputDataTelefone.text.toString()
             val isChecked = checkBox.isChecked
 
-            viewModel.isErrorValid(name, birthDate, numberCpf, email, confirmarEmail,phone, isChecked)
-            viewModel.allValid.observe(this) { isValid ->
-                if (isValid == true) {
-                    // Ação de sucesso: Inicia a próxima Activity
-                    val intent = Intent(this, RegisterAddressActivity::class.java)
-                    startActivity(intent)
+            viewModel.isErrorValid(name, birthDate, numberCpf, email, confirmarEmail, phone, isChecked)
+
+            // Verifica email antes de prosseguir
+            FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val methods = task.result?.signInMethods
+                        if (!methods.isNullOrEmpty()) {
+                            Toast.makeText(this, "Este e-mail já está cadastrado. Tente outro ou faça login.", Toast.LENGTH_LONG).show()
+                        } else {
+                            // email não existe, o observer vai disparar
+                            viewModel.allValid.value?.let { isValid ->
+                                if (isValid) {
+                                    val intent = Intent(this, RegisterAddressActivity::class.java)
+                                    intent.putExtra(RegisterPasswordActivity.EXTRA_EMAIL, email)
+                                    intent.putExtra("extra_name", name)
+                                    intent.putExtra("extra_birthdate", birthDate)
+                                    intent.putExtra("extra_cpf", numberCpf)
+                                    intent.putExtra("extra_phone", phone)
+                                    startActivity(intent)
+                                }
+                            }
+                        }
+                    } else {
+                        Toast.makeText(this, "Erro ao verificar e-mail. Tente novamente.", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
         }
+
+        // Observers ficam fora do clique
         viewModel.errorInput.observe(this) { value ->
             val alert = AlertDialog.Builder(this)
                 .setTitle("Erros nos seguintes campos:")
                 .setMessage(value)
-                .setPositiveButton("OK") { dialog, _ ->
-                    // Ação ao confirmardialog.dismiss()
-                }
-                .setNegativeButton("Cancelar") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .setCancelable(false) // impede fechar tocando fora ou botão back.show()
+                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                .setNegativeButton("Cancelar") { dialog, _ -> dialog.dismiss() }
+                .setCancelable(false)
             alert.show()
         }
 

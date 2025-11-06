@@ -42,12 +42,21 @@ class RegisterAddressActivity : AppCompatActivity() {
     private lateinit var registerAddressImgBack: ImageView
     private lateinit var progressBar: ProgressBar
 
-    private var cepValido = false // controla se o CEP foi validado via API, estava deixando passar sem validação via API (testar se está dando certo)
+    private var cepValido = false
+    private var email: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_register_address)
+
+        // --- Recebe o email da tela anterior ---
+        email = intent.getStringExtra(RegisterPasswordActivity.EXTRA_EMAIL)
+        if (email.isNullOrBlank()) {
+            Toast.makeText(this, getString(R.string.error_email_missing), Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
 
         // --- Bindings ---
         buttonAddressNext = findViewById(R.id.buttonNextAddress)
@@ -81,7 +90,6 @@ class RegisterAddressActivity : AppCompatActivity() {
 
         buttonAddressNext.setOnClickListener {
             val cep = inputAddressCep.text.toString().replace("-", "").trim()
-
             when {
                 cep.length < 8 -> showAlert("Digite os 8 dígitos do CEP.")
                 !cepValido -> showAlert("CEP inválido, tente novamente.")
@@ -104,17 +112,10 @@ class RegisterAddressActivity : AppCompatActivity() {
         }
     }
 
-    /**
-      Aplica máscara + filtro numérico + toast para caracteres inválidos
-     */
     private fun aplicarMascaraECepFilter() {
-        // Filtro: permite números e o hífen
-        val numbersAndDashFilter = InputFilter { source, start, end, dest, dstart, dend ->
-            if (source.isEmpty()) return@InputFilter source // permite apagar
-
+        val numbersAndDashFilter = InputFilter { source, _, _, _, _, _ ->
+            if (source.isEmpty()) return@InputFilter source
             val filtered = source.filter { it.isDigit() || it == '-' }
-
-            // Mostra toast se tentou digitar caractere inválido
             if (filtered.length != source.length) {
                 Toast.makeText(this, "Caractere não permitido!", Toast.LENGTH_SHORT).show()
             }
@@ -123,11 +124,8 @@ class RegisterAddressActivity : AppCompatActivity() {
 
         inputAddressCep.filters = arrayOf(numbersAndDashFilter)
 
-
-        // Máscara dinâmica (00000-000)
         inputAddressCep.addTextChangedListener(object : TextWatcher {
             private var isUpdating = false
-
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
@@ -140,9 +138,7 @@ class RegisterAddressActivity : AppCompatActivity() {
 
                 for (i in digits.indices) {
                     formatted.append(digits[i])
-                    if (i == 4 && i < digits.length - 1) {
-                        formatted.append("-")
-                    }
+                    if (i == 4 && i < digits.length - 1) formatted.append("-")
                 }
 
                 val masked = formatted.toString()
@@ -153,9 +149,6 @@ class RegisterAddressActivity : AppCompatActivity() {
         })
     }
 
-    /**
-      Busca CEP automaticamente quando completo (8 dígitos)
-     */
     private fun configurarBuscaCep() {
         inputAddressCep.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -171,7 +164,6 @@ class RegisterAddressActivity : AppCompatActivity() {
         })
     }
 
-    // --- Observers ---
     private fun setupObservers() {
         viewModel.error.observe(this) { message ->
             if (!message.isNullOrBlank()) showAlert(message)
@@ -196,7 +188,8 @@ class RegisterAddressActivity : AppCompatActivity() {
 
         viewModel.allValid.observe(this) { valid ->
             if (valid) {
-                val intent = Intent(this, PasswordActivity::class.java)
+                val intent = Intent(this, RegisterPasswordActivity::class.java)
+                intent.putExtra(RegisterPasswordActivity.EXTRA_EMAIL, email)
                 startActivity(intent)
             }
         }
@@ -205,7 +198,6 @@ class RegisterAddressActivity : AppCompatActivity() {
         viewModel.cidades.observe(this) { cidades -> showBottomSheetCidades(cidades) }
     }
 
-    // --- Bottom Sheets ---
     private fun showBottomSheetEstados(estados: List<StateResponse>) {
         val dialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.bottomsheet_list, null)

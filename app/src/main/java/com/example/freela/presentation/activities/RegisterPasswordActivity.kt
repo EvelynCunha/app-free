@@ -9,7 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.freela.R
 import com.google.android.material.textfield.TextInputEditText
 
-class PasswordActivity : AppCompatActivity() {
+class RegisterPasswordActivity : AppCompatActivity() {
 
     private lateinit var registerPasswordSenha: TextInputEditText
     private lateinit var registerPasswordConfirmeSenha: TextInputEditText
@@ -22,10 +22,8 @@ class PasswordActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_password)
 
-        registerPasswordSenha = findViewById(R.id.registerEditSenha)
-        registerPasswordConfirmeSenha = findViewById(R.id.registerEditConfirmarSenha)
-        registerPasswordEmail = findViewById(R.id.registerEditEmail)
-        registerPasswordConfirmeEmail = findViewById(R.id.registerEditConfirmarEmail)
+        registerPasswordSenha = findViewById(R.id.registerEditPassword)
+        registerPasswordConfirmeSenha = findViewById(R.id.registerEditConfirmPassword)
         registerPasswordBack = findViewById(R.id.registerPasswordBack)
 
         registerPasswordBack.setOnClickListener {

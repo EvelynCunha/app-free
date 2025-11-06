@@ -1,4 +1,4 @@
-package com.example.freela.presentation.activities
+package com.example.freela.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,8 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.freela.R
+import com.example.freela.presentation.activities.LoginActivity
+import com.example.freela.presentation.activities.RegisterActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         buttonRegister.setOnClickListener {
 
             //Para iniciar uma tela partindo de outra tela, utiliza-se o intent
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
