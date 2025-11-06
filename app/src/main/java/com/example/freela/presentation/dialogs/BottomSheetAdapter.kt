@@ -1,4 +1,4 @@
-package com.example.freela.presentation
+package com.example.freela.presentation.dialogs
 
 import android.view.LayoutInflater
 import android.view.View
