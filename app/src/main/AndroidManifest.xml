@@ -16,7 +16,7 @@
 
         <!-- Alterado para o Splash ser a "tela inicial" da aplicação -->
         <activity
-            android:name=".presentation.SplashActivity"
+            android:name=".presentation.activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,34 +30,35 @@
             android:exported="false" />
 
         <activity
-            android:name=".presentation.LoginActivity"
+            android:name=".presentation.activities.LoginActivity"
             android:exported="false" />
 
         <activity
-            android:name=".presentation.RegisterActivity"
+            android:name=".presentation.activities.RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.Freela.Light" />
 
         <activity
-            android:name=".presentation.RegisterAddressActivity"
+            android:name=".presentation.activities.RegisterAddressActivity"
             android:exported="false"
             android:theme="@style/Theme.Freela.Light" />
 
         <activity
-            android:name=".presentation.RegisterPasswordActivity"
+            android:name=".presentation.activities.RegisterPasswordActivity"
             android:exported="false" />
 
         <!-- Novas telas adicionadas, apenas para evitar a quebra, enquanto n forem criadas -->
         <activity
-            android:name=".presentation.ForgotPasswordActivity"
+            android:name=".presentation.activities.ForgotPasswordActivity"
             android:exported="false" />
-        <activity
-            android:name=".presentation.PaymentActivity"
-            android:exported="false" />
+        <!-- <activity
+            android:name=".presentation.activities.PaymentActivity"
+            android:exported="false" /> -->
 
         <activity
-            android:name=".presentation.HomeActivity"
-            android:exported="false" />
+            android:name=".presentation.activities.HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Freela.Light"/>
 
         <meta-data
             android:name="preloaded_fonts"

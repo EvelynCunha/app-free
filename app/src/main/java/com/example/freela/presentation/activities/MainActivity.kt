@@ -8,6 +8,8 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.freela.R
+import com.example.freela.presentation.activities.LoginActivity
+import com.example.freela.presentation.activities.RegisterActivity
 
 class MainActivity : AppCompatActivity() {
 

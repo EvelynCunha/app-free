@@ -1,4 +1,4 @@
-package com.example.freela.presentation
+package com.example.freela.presentation.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -20,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freela.R
+import com.example.freela.presentation.dialogs.BottomSheetAdapter
 import com.example.freela.repository.response.CityResponse
 import com.example.freela.repository.response.StateResponse
 import com.example.freela.viewModel.RegisterAddressViewModel

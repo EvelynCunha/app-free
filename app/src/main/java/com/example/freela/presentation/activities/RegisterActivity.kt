@@ -1,17 +1,14 @@
-package com.example.freela.presentation
+package com.example.freela.presentation.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.CheckBox
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.annotation.CheckResult
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.freela.R
