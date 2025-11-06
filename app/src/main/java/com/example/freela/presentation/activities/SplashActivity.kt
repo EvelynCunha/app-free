@@ -1,4 +1,4 @@
-package com.example.freela.presentation
+package com.example.freela.presentation.activities
 
 import android.content.Intent
 import android.os.Bundle

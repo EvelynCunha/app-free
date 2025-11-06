@@ -1,4 +1,4 @@
-package com.example.freela.presentation
+package com.example.freela.presentation.activities
 
 import android.os.Bundle
 import android.widget.ImageView
