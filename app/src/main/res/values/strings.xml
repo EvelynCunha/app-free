@@ -61,4 +61,17 @@
     <string name="home_text_greeting">Your finances are looking good</string>
     <string name="home_text_offer">Get 30% off</string>
     <string name="home_text_discont">Just by Booking Home Services</string>
+    <string name="home_text_photo_profile">Foto de Perfil</string>
+    <string name="home_text_offer_discount">Oferta de serviços</string>
+    <string name="home_text_services">Popular Services</string>
+    <string name="home_text_see_all">Ver tudo</string>
+    <string name="home_text_plumbe">Plumbing</string>
+    <string name="home_text_eletric">Eletric work</string>
+    <string name="home_text_solar">Solar</string>
+    <string name="home_text_services_providers">Services Providers</string>
+    <string name="home_text_person_1">Maskot Kota</string>
+    <string name="home_text_person_2">Shams Jans</string>
+    <string name="home_text_rating">4.8</string>
+    <string name="home_text_details">Details</string>
+
 </resources>
