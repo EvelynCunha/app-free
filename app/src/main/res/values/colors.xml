@@ -8,6 +8,9 @@
     <color name="grey">#808080</color>
     <color name="dark_grey">#565656</color>
     <color name="secundary_grey">#E3E4E4</color>
+    <color name="dark_text_grey">#595959</color>
+    <color name="light_text_grey">#C9C5D6</color>
+
     <color name="light_blue">#8696BB</color>
     <color name="bg_select">#E6DCF6</color>
     <color name="blue_primary">#304FFE</color>

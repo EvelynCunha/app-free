@@ -3,6 +3,8 @@
     <string name="welcome">Bem Vindo!</string>
     <string name="welcomeback">Bem Vindo de volta!</string>
     <string name="signup">CADASTRAR</string>
+    <string name="login_novo_usuario">Novo Usúario?</string>
+    <string name="login_cadastre_se">Cadastre-se</string>
     <string name="login">ENTRAR</string>
     <string name="back">Voltar</string>
     <string name="register_button_back">Voltar</string>
@@ -25,6 +27,7 @@
     <string name="register_address_cep">CEP</string>
     <string name="register_address_endereco">Endereço</string>
     <string name="register_address_numero">Nº</string>
+    <string name="register_address_complemento">Complemento</string>
     <string name="register_address_bairro">Bairro</string>
     <string name="register_address_cidade">Cidade</string>
     <string name="register_address_estado">Estado</string>
@@ -48,6 +51,47 @@
 
     <!-- Layout dinâmico -->
     <string name="new_user">
+    <font color="#050505">Novo usuário?</font> <font color="#0451FF">Cadastre-se</font>
+</string>
+    <string name="bank_data_back">Dados Bancários \nPara Recebimento</string>
+    <string name="bank_description_name_bank">Digite o nome ou código do seu banco aqui</string>
+    <string name="bank_description_agency">Digite o número da sua agência</string>
+    <string name="bank_description_account">Digite o número da sua conta</string>
+    <string name="bank_description_pix">Insira a sua chave PIX</string>
+    <string name="bank_description_individual">Pessoa Física</string>
+    <string name="bank_description_company">Pessoa Jurídica</string>
+    <string name="bank_description_button_next">Salvar informações e continuar</string>
+    <string name="bank_hint_input">Banco</string>
+    <string name="bank_list_search_not_find">Nenhum banco encontrado</string>
+    <string name="bank_hint_agency">Agência</string>
+    <string name="bank_hint_account">Conta</string>
+    <string name="bank_hint_account_type">Qual é o seu tipo de conta</string>
+    <string name="bank_account_type_current">Conta corrente</string>
+    <string name="bank_account_type_savings">Conta poupança</string>
+    <string name="bank_radio_individual">Pessoa Física</string>
+    <string name="bank_radio_company">Pessoa Jurídica</string>
+    <string name="bank_input_pix">PIX</string>
+    <string name="buttom_sheet_bank_title">Escolha uma opção</string>
+    <string name="button_sheet_bank_input">Digite aqui para pesquisar</string>
+    <string name="validation_error_title">Erro de validação</string>
+    <string name="ok">OK</string>
+    <string name="error_empty_bank">Banco é obrigatório.</string>
+    <string name="error_empty_agency">Agência inválida.</string>
+    <string name="error_empty_account">Conta inválida.</string>
+    <string name="error_empty_account_type">Tipo da conta é obrigatório.</string>
+    <string name="error_empty_pix">PIX é obrigatório.</string>
+    <string name="error_generic">Ocorreu um erro inesperado.</string>
+    <string name="no_banks_found">Lista não encontrada</string>
+    <string name="api_connection_failed">Não foi possível conectar a API</string>
+    <string name="register_payment_title">Formas de Pagamento</string>
+    <string name="register_payment_card_type">Escolha uma das opções</string>
+    <string name="register_payment_card_name">Nome Completo</string>
+    <string name="register_payment_card_number">Número do Cartão</string>
+    <string name="register_payment_card_validade">Válidade</string>
+    <string name="register_payment_card_cvv">CVV</string>
+    <string name="register_payment_add_bank">Adicionar conta bancária</string>
+    <string name="back_button">Botão Voltar</string>
+</resources>
         <font color="#050505">Novo usuário?</font> <font color="#0451FF">Cadastre-se</font>
     </string>
 
