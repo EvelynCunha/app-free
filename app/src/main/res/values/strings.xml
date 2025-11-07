@@ -1,23 +1,28 @@
 <resources>
     <string name="app_name">Freela</string>
     <string name="welcome">Bem Vindo!</string>
+    <string name="welcomeback">Bem Vindo de volta!</string>
     <string name="signup">CADASTRAR</string>
     <string name="login_novo_usuario">Novo Usúario?</string>
     <string name="login_cadastre_se">Cadastre-se</string>
     <string name="login">ENTRAR</string>
     <string name="back">Voltar</string>
-    <string name="welcomeback">Bem Vindo de volta!</string>
     <string name="register_button_back">Voltar</string>
+
+    <!-- Dados pessoais -->
     <string name="register_dados_pessoais">Dados Pessoais</string>
     <string name="register_nome">Nome completo</string>
     <string name="register_data_nascimento">Data de nascimento</string>
     <string name="register_cpf">CPF</string>
     <string name="register_email">E-mail</string>
-    <string name="register_confirme_email">Confirme seu  e-mail</string>
+    <string name="register_confirm_email">Confirmar E-mail</string>
+    <string name="register_confirme_email">Confirme seu e-mail</string>
     <string name="register_telefone">Número com DD</string>
     <string name="register_concordar_termo">Li e estou de acordo com o </string>
     <string name="register_politica_de_privacidade">Termo de Uso e Política de Privacidade</string>
     <string name="register_button_continuar">CONTINUAR</string>
+
+    <!-- Endereço -->
     <string name="register_address">Endereço Pessoal</string>
     <string name="register_address_cep">CEP</string>
     <string name="register_address_endereco">Endereço</string>
@@ -26,12 +31,25 @@
     <string name="register_address_bairro">Bairro</string>
     <string name="register_address_cidade">Cidade</string>
     <string name="register_address_estado">Estado</string>
-    <string name="register_password_usuario">Dados do Usuário</string>
-    <string name="register_password_senha">Senha</string>
-    <string name="register_password_confirmar_senha">Confirmar Senha</string>
-    <string name="register_password_email">E-mail</string>
-    <string name="register_password_confirmar_email">Confirmar E-mail</string>
+    <string name="register_address_complemento">Complemento</string>
+
+    <!-- Senha -->
+    <string name="register_password_user">Crie uma senha</string>
+    <string name="register_password">Senha</string>
+    <string name="register_confirm_password">Confirmar Senha</string>
     <string name="password_field">Campo de Senha</string>
+
+    <!-- Validações e mensagens -->
+    <string name="fill_all_fields">Preencha todos os campos</string>
+    <string name="passwords_do_not_match">As senhas não conferem</string>
+    <string name="weak_password">Senha fraca, tente uma mais segura</string>
+    <string name="unexpected_error">Ocorreu um erro inesperado</string>
+    <string name="register_success">Senha cadastrada com sucesso!</string>
+    <string name="error_email_missing">Email ausente</string>
+    <string name="error_email_in_use">Este e-mail já está cadastrado. Tente outro ou faça login.</string>
+
+
+    <!-- Layout dinâmico -->
     <string name="new_user">
     <font color="#050505">Novo usuário?</font> <font color="#0451FF">Cadastre-se</font>
 </string>
@@ -73,4 +91,31 @@
     <string name="register_payment_card_cvv">CVV</string>
     <string name="register_payment_add_bank">Adicionar conta bancária</string>
     <string name="back_button">Botão Voltar</string>
+</resources>
+        <font color="#050505">Novo usuário?</font> <font color="#0451FF">Cadastre-se</font>
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bottom_navigator_home">Home</string>
+    <string name="bottom_navigator_calendar">Calendário</string>
+    <string name="bottom_navigator_chat">Chat</string>
+    <string name="bottom_navigator_profile">Perfil</string>
+    <string name="home_text_hello">Hello John</string>
+    <string name="home_text_greeting">Your finances are looking good</string>
+    <string name="home_text_offer">Get 30% off</string>
+    <string name="home_text_discont">Just by Booking Home Services</string>
+    <string name="home_text_photo_profile">Foto de Perfil</string>
+    <string name="home_text_offer_discount">Oferta de serviços</string>
+    <string name="home_text_services">Popular Services</string>
+    <string name="home_text_see_all">Ver tudo</string>
+    <string name="home_text_plumbe">Plumbing</string>
+    <string name="home_text_eletric">Eletric work</string>
+    <string name="home_text_solar">Solar</string>
+    <string name="home_text_services_providers">Services Providers</string>
+    <string name="home_text_person_1">Maskot Kota</string>
+    <string name="home_text_person_2">Shams Jans</string>
+    <string name="home_text_rating">4.8</string>
+    <string name="home_text_details">Details</string>
+
 </resources>

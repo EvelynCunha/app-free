@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "50862841807",
+    "project_id": "freela-999a9",
+    "storage_bucket": "freela-999a9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:50862841807:android:6f6f8a68e51d6872e47cba",
+        "android_client_info": {
+          "package_name": "com.example.freela"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7oDS8N_OjxkHsJEzkBZ_KAuKSaJRSDKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
