@@ -1,8 +1,8 @@
-package com.example.freela.repository.bankrepository
+package com.example.freela.repository.paymentrepository
 
 import com.example.freela.repository.response.BankResponse
 
-class BankRepository {
+class PaymentRepository {
     private val brasilApi = RetrofitInstance.brasilApiRetrofit
 
     suspend fun seekBanks(): List<BankResponse>? {

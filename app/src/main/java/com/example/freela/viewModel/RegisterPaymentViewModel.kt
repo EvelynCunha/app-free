@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.freela.repository.bankrepository.BankRepository
+import com.example.freela.repository.paymentrepository.PaymentRepository
 import kotlinx.coroutines.launch
 
-class RegisterBankViewModel : ViewModel() {
+class RegisterPaymentViewModel : ViewModel() {
 
-    private val repository = BankRepository()
+    private val repository = PaymentRepository()
 
     private val _banks = MutableLiveData<List<BankItem>>()
     val banks: LiveData<List<BankItem>> get() = _banks

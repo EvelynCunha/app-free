@@ -1,4 +1,4 @@
-package com.example.freela.presentation
+package com.example.freela.presentation.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,26 +7,26 @@ import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.freela.R
-import androidx.activity.viewModels
-import androidx.appcompat.widget.AppCompatButton
-import com.example.freela.databinding.ActivityBankBinding
+import com.example.freela.databinding.ActivityPaymentBinding
 import com.example.freela.databinding.CustomBottomSheetBinding
-import com.example.freela.presentation.adapter.BottomSheetBankAdapter
-import com.example.freela.viewModel.RegisterBankViewModel
+import com.example.freela.presentation.dialogs.BottomSheetPaymentAdapter
+import com.example.freela.presentation.applyAccountMask
+import com.example.freela.viewModel.RegisterPaymentViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
-import androidx.core.widget.doOnTextChanged
-import com.example.freela.viewModel.RegisterBankViewModel.ValidationError
 import com.google.android.material.textfield.TextInputLayout
 
-class BankActivity : AppCompatActivity() {
+class PaymentActivity : AppCompatActivity() {
 
-    private val viewModel: RegisterBankViewModel by viewModels()
+    private val viewModel: RegisterPaymentViewModel by viewModels()
 
     private lateinit var registerBankBack: ImageView
     private lateinit var layoutBankName: TextInputLayout
@@ -37,7 +37,7 @@ class BankActivity : AppCompatActivity() {
     private lateinit var bankInputTypeAccount: AutoCompleteTextView
     private lateinit var bankInputPix: TextInputEditText
     private lateinit var bankButtonNext: AppCompatButton
-    private lateinit var binding: ActivityBankBinding
+    private lateinit var binding: ActivityPaymentBinding
     private lateinit var layoutAgency: TextInputLayout
     private lateinit var layoutAccount: TextInputLayout
     private lateinit var layoutAccountType: TextInputLayout
@@ -46,9 +46,9 @@ class BankActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupObservers()
-        binding = ActivityBankBinding.inflate(layoutInflater)
+        binding = ActivityPaymentBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_bank)
+        setContentView(R.layout.activity_payment)
         setContentView(binding.root)
 
 // --- Bindings ---
@@ -74,7 +74,8 @@ class BankActivity : AppCompatActivity() {
 
         val bankAccountType = listOf(getString(R.string.bank_account_type_current), getString(R.string.bank_account_type_savings))
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, bankAccountType)
+        val adapter =
+            ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, bankAccountType)
 
         binding.dropdownAccountType.setAdapter(adapter)
 
@@ -120,7 +121,7 @@ class BankActivity : AppCompatActivity() {
 
         viewModel.allValid.observe(this) { valid ->
             if (valid) {
-                val intent = Intent(this, PaymentActivity::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             } else {
                 // Remove erros em tempo real
@@ -174,7 +175,7 @@ class BankActivity : AppCompatActivity() {
         bankButtonNext.alpha = if (bankButtonNext.isEnabled) 1f else 0.5f
     }
 
-    private fun showFieldErrors(errorsList: List<ValidationError>) {
+    private fun showFieldErrors(errorsList: List<RegisterPaymentViewModel.ValidationError>) {
         // limpa erros anteriores
         listOf(layoutBankName, layoutAgency, layoutAccount, layoutAccountType, layoutPix).forEach {
 
@@ -185,22 +186,22 @@ class BankActivity : AppCompatActivity() {
         // marca os erros específicos
         errorsList.forEach { error ->
             when (error) {
-                is ValidationError.EmptyBank -> {
+                is RegisterPaymentViewModel.ValidationError.EmptyBank -> {
                     layoutBankName.error = getString(R.string.error_empty_bank)
                 }
-                is ValidationError.EmptyAgency -> {
+                is RegisterPaymentViewModel.ValidationError.EmptyAgency -> {
                     layoutAgency.error = getString(R.string.error_empty_agency)
                 }
-                is ValidationError.EmptyAccount -> {
+                is RegisterPaymentViewModel.ValidationError.EmptyAccount -> {
                     layoutAccount.error = getString(R.string.error_empty_account)
                 }
-                is ValidationError.InvalidAccount -> {
+                is RegisterPaymentViewModel.ValidationError.InvalidAccount -> {
                     layoutAccount.error = getString(R.string.error_empty_account)
                 }
-                is ValidationError.EmptyAccountType -> {
+                is RegisterPaymentViewModel.ValidationError.EmptyAccountType -> {
                     layoutAccountType.error = getString(R.string.error_empty_account_type)
                 }
-                is ValidationError.EmptyPix -> {
+                is RegisterPaymentViewModel.ValidationError.EmptyPix -> {
                     layoutPix.error = getString(R.string.error_empty_pix)
                 }
             }
@@ -208,14 +209,14 @@ class BankActivity : AppCompatActivity() {
     }
 
 
-    private fun showButtonSheetDialog(bankName: List<RegisterBankViewModel.BankItem>) {
+    private fun showButtonSheetDialog(bankName: List<RegisterPaymentViewModel.BankItem>) {
         val dialog = BottomSheetDialog(this)
         val sheetBinding = CustomBottomSheetBinding.inflate(layoutInflater)
         dialog.setContentView(sheetBinding.root)
 
         val recycler = sheetBinding.recyclerViewBankList
         recycler.layoutManager = LinearLayoutManager(this)
-        val adapter = BottomSheetBankAdapter(bankName) { bankSelected ->
+        val adapter = BottomSheetPaymentAdapter(bankName) { bankSelected ->
             binding.bankEditNameBank.text = bankSelected.displayName
             dialog.dismiss()
         }
@@ -240,7 +241,7 @@ class BankActivity : AppCompatActivity() {
                 // Se nada for encontrado, mostra um item "falso"
                 adapter.updateList(
                     listOf(
-                        RegisterBankViewModel.BankItem(
+                        RegisterPaymentViewModel.BankItem(
                             code = 0,
                             name = "",
                             displayName = getString(R.string.bank_list_search_not_find)
