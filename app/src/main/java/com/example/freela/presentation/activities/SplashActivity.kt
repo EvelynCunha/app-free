@@ -2,10 +2,9 @@ package com.example.freela.presentation.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.animation.Animation
-import android.view.animation.TranslateAnimation
 import androidx.appcompat.app.AppCompatActivity
 import com.example.freela.databinding.ActivitySplashBinding
+import com.example.freela.presentation.MainActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -16,24 +15,28 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.imgLogo.alpha = 0f
+        binding.imgLogo.scaleX = 0.8f
+        binding.imgLogo.scaleY = 0.8f
 
-        // Animação :)
-        binding.root.postDelayed({
-            val moveUp = TranslateAnimation(0f, 0f, 0f, -300f).apply {
-                duration = 1000
-                fillAfter = true
-                setAnimationListener(object : Animation.AnimationListener {
-                    override fun onAnimationStart(animation: Animation?) {}
-                    override fun onAnimationEnd(animation: Animation?) {
-
-                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+        binding.imgLogo.animate()
+            .alpha(1f)
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(1000)
+            .withEndAction {
+                binding.imgLogo.animate()
+                    .rotationBy(360f)
+                    .scaleX(1.4f)
+                    .scaleY(1.4f)
+                    .alpha(0f)
+                    .setDuration(1200)
+                    .setStartDelay(300)
+                    .withEndAction {
+                        startActivity(Intent(this, MainActivity::class.java))
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                         finish()
                     }
-                    override fun onAnimationRepeat(animation: Animation?) {}
-                })
             }
-
-            binding.imgLogo.startAnimation(moveUp)
-        }, 2000)
     }
 }

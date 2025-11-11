@@ -27,11 +27,13 @@
         <!-- Demais telas do app -->
         <activity
             android:name=".presentation.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Freela.Light"/>
 
         <activity
             android:name=".presentation.activities.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Freela.Light"/>
 
         <activity
             android:name=".presentation.activities.RegisterActivity"
@@ -45,15 +47,19 @@
 
         <activity
             android:name=".presentation.activities.RegisterPasswordActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Freela.Light"/>
 
         <!-- Novas telas adicionadas, apenas para evitar a quebra, enquanto n forem criadas -->
         <activity
             android:name=".presentation.activities.ForgotPasswordActivity"
-            android:exported="false" />
-        <!-- <activity
+            android:exported="false"
+            android:theme="@style/Theme.Freela.Light"/>
+
+        <activity
             android:name=".presentation.activities.PaymentActivity"
-            android:exported="false" /> -->
+            android:exported="false"
+            android:theme="@style/Theme.Freela.Light"/>
 
         <activity
             android:name=".presentation.activities.HomeActivity"

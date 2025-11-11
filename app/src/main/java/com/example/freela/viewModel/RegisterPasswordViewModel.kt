@@ -19,11 +19,11 @@ class RegisterPasswordViewModel(private val registerUseCase: RegisterPasswordUse
     private val _state = MutableStateFlow<RegisterPasswordState>(RegisterPasswordState.Idle)
     val state: StateFlow<RegisterPasswordState> = _state
 
-    fun register(email: String, password: String, confirmPassword: String) {
+    fun register(email: String, password: String, confirmPassword: String, name: String) {
         viewModelScope.launch {
             _state.value = RegisterPasswordState.Loading
             try {
-                val result = registerUseCase(email, password, confirmPassword)
+                val result = registerUseCase(email, password, confirmPassword, name)
                 if (result.isSuccess) {
                     _state.value = RegisterPasswordState.Success
                 } else {

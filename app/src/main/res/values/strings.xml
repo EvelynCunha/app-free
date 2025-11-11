@@ -31,7 +31,6 @@
     <string name="register_address_bairro">Bairro</string>
     <string name="register_address_cidade">Cidade</string>
     <string name="register_address_estado">Estado</string>
-    <string name="register_address_complemento">Complemento</string>
 
     <!-- Senha -->
     <string name="register_password_user">Crie uma senha</string>
@@ -91,9 +90,7 @@
     <string name="register_payment_card_cvv">CVV</string>
     <string name="register_payment_add_bank">Adicionar conta bancária</string>
     <string name="back_button">Botão Voltar</string>
-</resources>
-        <font color="#050505">Novo usuário?</font> <font color="#0451FF">Cadastre-se</font>
-    </string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -101,7 +98,8 @@
     <string name="bottom_navigator_calendar">Calendário</string>
     <string name="bottom_navigator_chat">Chat</string>
     <string name="bottom_navigator_profile">Perfil</string>
-    <string name="home_text_hello">Hello John</string>
+    <string name="hello_user">Olá, %1$s</string>
+    <string name="default_user_name">Usuário</string>
     <string name="home_text_greeting">Your finances are looking good</string>
     <string name="home_text_offer">Get 30% off</string>
     <string name="home_text_discont">Just by Booking Home Services</string>

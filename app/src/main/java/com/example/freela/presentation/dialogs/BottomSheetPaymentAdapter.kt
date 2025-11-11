@@ -1,4 +1,4 @@
-package com.example.freela.presentation.adapter
+package com.example.freela.presentation.dialogs
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,17 +6,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freela.R
-import com.example.freela.viewModel.RegisterBankViewModel
+import com.example.freela.viewModel.RegisterPaymentViewModel
 
-class BottomSheetBankAdapter(
-    private var bankList: List<RegisterBankViewModel.BankItem>,
-    private val onItemClick: (RegisterBankViewModel.BankItem) -> Unit
-) : RecyclerView.Adapter<BottomSheetBankAdapter.ViewHolder>() {
+class BottomSheetPaymentAdapter(
+    private var bankList: List<RegisterPaymentViewModel.BankItem>,
+    private val onItemClick: (RegisterPaymentViewModel.BankItem) -> Unit
+) : RecyclerView.Adapter<BottomSheetPaymentAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val nameBank: TextView = view.findViewById(R.id.bank_List_View)
 
-        fun bind(item: RegisterBankViewModel.BankItem) {
+        fun bind(item: RegisterPaymentViewModel.BankItem) {
             nameBank.text = item.displayName
             itemView.setOnClickListener {
                 if (item.code != 0) onItemClick(item)
@@ -36,7 +36,7 @@ class BottomSheetBankAdapter(
 
     override fun getItemCount(): Int = bankList.size
 
-    fun updateList(newList: List<RegisterBankViewModel.BankItem>) {
+    fun updateList(newList: List<RegisterPaymentViewModel.BankItem>) {
         bankList = newList
         notifyDataSetChanged()
     }

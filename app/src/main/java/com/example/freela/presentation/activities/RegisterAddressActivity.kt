@@ -44,14 +44,16 @@ class RegisterAddressActivity : AppCompatActivity() {
 
     private var cepValido = false
     private var email: String? = null
+    private var name: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_register_address)
 
-        // --- Recebe o email da tela anterior ---
+        // --- Recebe o email e o nome da tela anterior ---
         email = intent.getStringExtra(RegisterPasswordActivity.EXTRA_EMAIL)
+        name = intent.getStringExtra(RegisterPasswordActivity.EXTRA_NOME)
         if (email.isNullOrBlank()) {
             Toast.makeText(this, getString(R.string.error_email_missing), Toast.LENGTH_SHORT).show()
             finish()
@@ -180,9 +182,19 @@ class RegisterAddressActivity : AppCompatActivity() {
                 inputAddressBairro.setText(endereco.bairro ?: "")
                 inputAddressCidade.text = endereco.localidade ?: ""
                 inputAddressEstado.text = endereco.uf ?: ""
+
+                inputAddressCidade.isEnabled = false
+                inputAddressEstado.isEnabled = false
+                inputAddressCidade.alpha = 0.6f
+                inputAddressEstado.alpha = 0.6f
+
             } else {
                 cepValido = false
                 showAlert("CEP inválido, tente novamente.")
+                inputAddressCidade.isEnabled = true
+                inputAddressEstado.isEnabled = true
+                inputAddressCidade.alpha = 1f
+                inputAddressEstado.alpha = 1f
             }
         }
 
@@ -190,6 +202,7 @@ class RegisterAddressActivity : AppCompatActivity() {
             if (valid) {
                 val intent = Intent(this, RegisterPasswordActivity::class.java)
                 intent.putExtra(RegisterPasswordActivity.EXTRA_EMAIL, email)
+                intent.putExtra(RegisterPasswordActivity.EXTRA_NOME, name)
                 startActivity(intent)
             }
         }

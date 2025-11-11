@@ -7,9 +7,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.freela.R
+import com.example.freela.databinding.ActivityLoginBinding
 import com.example.freela.domain.usecase.LoginUseCase
 import com.example.freela.repository.auth.AuthRepository
-import com.example.freela.databinding.ActivityLoginBinding
 import com.example.freela.viewModel.LoginViewModel
 import com.example.freela.viewModel.LoginViewModelFactory
 import com.google.firebase.auth.FirebaseAuth
@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuthException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
 
 class LoginActivity : ComponentActivity() {
 
@@ -47,7 +46,7 @@ class LoginActivity : ComponentActivity() {
         binding.btnLogin.setOnClickListener {
             debounceJob?.cancel()
             debounceJob = lifecycleScope.launch {
-                delay(500) // debounce
+                delay(500)
                 handleLogin()
             }
         }
@@ -76,7 +75,8 @@ class LoginActivity : ComponentActivity() {
     private fun observeViewModel() {
         lifecycleScope.launch {
             viewModel.loading.collect { isLoading ->
-                binding.progressBar.visibility = if (isLoading) android.view.View.VISIBLE else android.view.View.GONE
+                binding.progressBar.visibility =
+                    if (isLoading) android.view.View.VISIBLE else android.view.View.GONE
                 binding.btnLogin.isEnabled = !isLoading
             }
         }

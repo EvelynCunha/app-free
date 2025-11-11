@@ -1,4 +1,4 @@
-package com.example.freela.repository.bankrepository
+package com.example.freela.repository.paymentrepository
 
 
 import retrofit2.Retrofit
