@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragments.CardPayFrontFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="232dp">
+
+        <ImageView
+            android:id="@+id/image_Card_Front"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_card_front"
+            android:layout_marginStart="6dp"/>
+
+        <TextView
+            android:id="@+id/text_Card_Type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Débito"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="344dp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/text_Card_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Isabella Mesquita"
+            android:layout_marginTop="148dp"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:textSize="18sp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/text_Card_Number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5999  5877  5667  5993"
+            android:layout_marginTop="178dp"
+            android:layout_marginStart="28dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:textSize="28sp"
+            android:textColor="@color/white"/>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

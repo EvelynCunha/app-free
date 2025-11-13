@@ -75,7 +75,7 @@ class PaymentActivity : AppCompatActivity() {
         val bankAccountType = listOf(getString(R.string.bank_account_type_current), getString(R.string.bank_account_type_savings))
 
         val adapter =
-            ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, bankAccountType)
+            ArrayAdapter(this, R.layout.item_dropdown_option, bankAccountType)
 
         binding.dropdownAccountType.setAdapter(adapter)
 
@@ -121,7 +121,7 @@ class PaymentActivity : AppCompatActivity() {
 
         viewModel.allValid.observe(this) { valid ->
             if (valid) {
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, CardPayActivity::class.java)
                 startActivity(intent)
             } else {
                 // Remove erros em tempo real

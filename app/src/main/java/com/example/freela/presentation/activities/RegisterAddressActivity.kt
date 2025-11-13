@@ -20,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freela.R
+import com.example.freela.presentation.addCepMask
 import com.example.freela.presentation.dialogs.BottomSheetAdapter
 import com.example.freela.repository.response.CityResponse
 import com.example.freela.repository.response.StateResponse
@@ -61,15 +62,15 @@ class RegisterAddressActivity : AppCompatActivity() {
         }
 
         // --- Bindings ---
-        buttonAddressNext = findViewById(R.id.buttonNextAddress)
-        inputAddressCep = findViewById(R.id.register_edit_cep)
-        inputAddressEndereco = findViewById(R.id.registerEditEndereco)
-        inputAddressNumero = findViewById(R.id.registerEditNumero)
-        inputAddressComplemento = findViewById(R.id.registerEditComplemento)
-        inputAddressBairro = findViewById(R.id.registerEditBairro)
-        inputAddressCidade = findViewById(R.id.registerEditCidade)
-        inputAddressEstado = findViewById(R.id.registerEditEstado)
-        registerAddressImgBack = findViewById(R.id.register_address_back)
+        buttonAddressNext = findViewById(R.id.button_Next_Address)
+        inputAddressCep = findViewById(R.id.register_Edit_Cep)
+        inputAddressEndereco = findViewById(R.id.register_Edit_Address)
+        inputAddressNumero = findViewById(R.id.register_Edit_Number)
+        inputAddressComplemento = findViewById(R.id.register_Edit_Complement)
+        inputAddressBairro = findViewById(R.id.register_Edit_District)
+        inputAddressCidade = findViewById(R.id.register_Edit_City)
+        inputAddressEstado = findViewById(R.id.register_Edit_State)
+        registerAddressImgBack = findViewById(R.id.register_Address_Back)
         progressBar = findViewById(R.id.progressBar)
 
         setupObservers()
@@ -125,7 +126,8 @@ class RegisterAddressActivity : AppCompatActivity() {
         }
 
         inputAddressCep.filters = arrayOf(numbersAndDashFilter)
-
+        inputAddressCep.addCepMask()
+/*
         inputAddressCep.addTextChangedListener(object : TextWatcher {
             private var isUpdating = false
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -149,7 +151,10 @@ class RegisterAddressActivity : AppCompatActivity() {
                 isUpdating = false
             }
         })
+         */
     }
+
+
 
     private fun configurarBuscaCep() {
         inputAddressCep.addTextChangedListener(object : TextWatcher {

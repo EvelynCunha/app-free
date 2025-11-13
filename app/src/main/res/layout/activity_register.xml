@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
                 <ImageView
-                    android:id="@+id/registerDataBack"
+                    android:id="@+id/register_Data_Back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -33,10 +33,10 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="30dp"
                     android:fontFamily="@font/open_sans_bold"
-                    android:text="@string/register_dados_pessoais"
+                    android:text="@string/register_personal_data"
                     android:textSize="30sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/registerDataBack" />
+                    app:layout_constraintTop_toBottomOf="@+id/register_Data_Back" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/registerInputNome"
@@ -45,6 +45,7 @@
             android:layout_marginTop="52dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            app:hintTextColor="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textRegister1">
@@ -54,8 +55,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_input_primary"
-                android:hint="@string/register_nome"
-                android:textColor="@color/grey" />
+                android:hint="@string/register_name"
+                android:textColor="@color/dark_text_grey" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,19 +67,20 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="22dp"
                 android:layout_marginEnd="16dp"
+                app:hintTextColor="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/registerInputNome">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/registerEditNascimento"
+                    android:id="@+id/register_Edit_Birthday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_input_primary"
-                    android:hint="@string/register_data_nascimento"
+                    android:hint="@string/register_birthday"
                     android:maxLength="10"
                     android:inputType="date"
-                    android:textColor="@color/grey" />
+                    android:textColor="@color/dark_text_grey" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,19 +91,20 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="22dp"
                 android:layout_marginEnd="16dp"
+                app:hintTextColor="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/registerInputNascimento">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/registerEditCpf"
+                    android:id="@+id/register_Edit_Cpf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_input_primary"
                     android:hint="@string/register_cpf"
                     android:inputType="number"
                     android:maxLength="14"
-                    android:textColor="@color/grey" />
+                    android:textColor="@color/dark_text_grey" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,19 +116,20 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="22dp"
                 android:layout_marginEnd="16dp"
+                app:hintTextColor="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/registerInputConfirmarEmail">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/registerEditTelefone"
+                    android:id="@+id/register_Edit_Phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_input_primary"
-                    android:hint="@string/register_telefone"
+                    android:hint="@string/register_phone"
                     android:inputType="phone"
                     android:maxLength="15"
-                    android:textColor="@color/grey" />
+                    android:textColor="@color/dark_text_grey" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,6 +140,10 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="22dp"
                 android:layout_marginEnd="16dp"
+                app:endIconMode="none"
+                app:endIconDrawable="@drawable/check"
+                app:endIconTint="@color/blue"
+                app:hintTextColor="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/registerInputCpf">
@@ -145,9 +153,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_input_primary"
-                    android:drawableEnd="@drawable/check"
                     android:hint="@string/register_email"
-                    android:textColor="@color/grey" />
+                    android:textColor="@color/dark_text_grey" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -158,18 +165,21 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="22dp"
                 android:layout_marginEnd="16dp"
+                app:endIconMode="none"
+                app:endIconDrawable="@drawable/check"
+                app:endIconTint="@color/blue"
+                app:hintTextColor="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/registerInputEmail">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dataConfirmeEmail"
+                    android:id="@+id/data_Confirm_Email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_input_primary"
-                    android:drawableEnd="@drawable/check"
-                    android:hint="@string/register_confirme_email"
-                    android:textColor="@color/grey" />
+                    android:hint="@string/register_input_confirm_email"
+                    android:textColor="@color/dark_text_grey" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -186,7 +196,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/registerInputTelefone">
 
                 <CheckBox
-                    android:id="@+id/checkBox"
+                    android:id="@+id/check_Box"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginStart="16dp"
@@ -199,17 +209,17 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/register_concordar_termo"
+                    android:text="@string/register_agree_term"
                     android:textSize="11sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox"
+                    app:layout_constraintStart_toEndOf="@+id/check_Box"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/loginCadastreSe"
+                    android:id="@+id/register_Term_Bottom_Sheet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/register_politica_de_privacidade"
+                    android:text="@string/register_privacy_policy"
                     android:textColor="@color/blue"
                     android:textSize="11sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -219,14 +229,14 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/buttonNextData"
+                android:id="@+id/button_Next_Data"
                 style="@style/button_primary_style"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="22dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/register_button_continuar"
+                android:text="@string/register_button_continue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />

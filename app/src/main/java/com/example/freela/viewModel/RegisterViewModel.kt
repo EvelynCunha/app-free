@@ -28,42 +28,42 @@ class RegisterViewModel(
     fun isBirthDateValid(date: String): Boolean = validateBirthDateUseCase(date)
     fun isCpfValid(cpf: String): Boolean = validateCpfUseCase(cpf)
     fun isEmailValid(email: String): Boolean = validateEmailUseCase(email)
-    fun isConfirmaEmailValid(confirmaEmail: String, email: String): Boolean {
-        return confirmaEmail.isNotBlank() && confirmaEmail == email
+    fun isConfirmaEmailValid(confirmEmail: String, email: String): Boolean {
+        return confirmEmail.isNotBlank() && confirmEmail == email
     }
     fun isCheckboxValid(isChecked: Boolean): Boolean {
         return isChecked
     }
     fun isPhoneValid(phone: String): Boolean = validatePhoneUseCase(phone)
 
-    fun isErrorValid(name: String, date: String, cpf: String, email: String, confirmaEmail:String, phone: String, isChecked: Boolean) {
-        if (!isNameValid(name)) {
-            listError.add("Nome")
-        }
-        if (!isBirthDateValid(date)) {
-            listError.add("Data de Nascimento")
-        }
-        if (!isCpfValid(cpf)) {
-            listError.add("Cpf")
-        }
-        if (!isEmailValid(email)) {
-            listError.add("Email")
-        }
-        if(!isConfirmaEmailValid(confirmaEmail, email)){
-            listError.add("Confirmar Email")
-        }
-        if (!isPhoneValid(phone)) {
-            listError.add("Telefone")
-        }
-        if (!isCheckboxValid(isChecked)) {
-            listError.add("Aceitar os termos")
-        }
-        if (listError.isEmpty()) {
-            _allValid.postValue(true) // Sinaliza que TUDO está OK
+    fun isErrorValid(
+        name: String,
+        date: String,
+        cpf: String,
+        email: String,
+        confirmEmail: String,
+        phone: String,
+        isChecked: Boolean
+    ): Boolean {
+        listError.clear()
+
+        if (!isNameValid(name)) listError.add("Nome")
+        if (!isBirthDateValid(date)) listError.add("Data de Nascimento")
+        if (!isCpfValid(cpf)) listError.add("CPF")
+        if (!isEmailValid(email)) listError.add("Email")
+        if (!isConfirmaEmailValid(confirmEmail, email)) listError.add("Confirmar Email")
+        if (!isPhoneValid(phone)) listError.add("Telefone")
+        if (!isCheckboxValid(isChecked)) listError.add("Aceitar os termos")
+
+        return if (listError.isEmpty()) {
+            _allValid.postValue(true)
+            true
         } else {
-            errorStr() // Exibe o AlertDialog se houver erros
+            errorStr()
+            false
         }
     }
+
 
     fun errorStr() {
         var error = ""
