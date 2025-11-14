@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragments.CardPayBackFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="232dp">
+
+        <ImageView
+            android:id="@+id/image_Card_Back"
+            android:layout_width="398dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_card_image"
+            android:layout_marginStart="6dp" />
+
+        <TextView
+            android:id="@+id/text_Card_Start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This card is issued by Swedbank pursuant to licence by Mastercard International."
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="24dp"
+            android:textSize="4sp"
+            android:fontFamily="@font/open_sans_bold"
+            android:textColor="@color/white"
+            tools:ignore="SmallSp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/black"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="8dp"/>
+
+        <TextView
+            android:id="@+id/text_Card_Validity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Validade"
+            android:layout_marginTop="144dp"
+            android:layout_marginStart="26dp"
+            android:textSize="11sp"
+            android:fontFamily="@font/open_sans_bold"
+            android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/text_Card_Expiry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10/30"
+            android:layout_marginTop="158dp"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/text_Card_Cvv_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CVV"
+            android:layout_marginTop="144dp"
+            android:layout_marginStart="96dp"
+            android:textSize="11sp"
+            android:fontFamily="@font/open_sans_bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/text_Card_Cvv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="877"
+            android:layout_marginTop="158dp"
+            android:layout_marginStart="94dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/text_Card_End"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SWEDBANK: ESTONIA, TEL. +372 631 0310,LATVIA, TEL.+371 6744 4444, LITHUANIA, TEL +370 5 268 4444"
+            android:layout_marginTop="218dp"
+            android:layout_marginStart="24dp"
+            android:textSize="4sp"
+            android:fontFamily="@font/open_sans_bold"
+            android:textColor="@color/white"
+            tools:ignore="SmallSp" />
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

@@ -3,34 +3,38 @@
     <string name="welcome">Bem Vindo!</string>
     <string name="welcomeback">Bem Vindo de volta!</string>
     <string name="signup">CADASTRAR</string>
-    <string name="login_novo_usuario">Novo Usúario?</string>
-    <string name="login_cadastre_se">Cadastre-se</string>
+    <string name="login_new_user">Novo Usúario?</string>
+    <string name="login_register">Cadastre-se</string>
     <string name="login">ENTRAR</string>
+    <string name="login_input_email">Email</string>
+    <string name="login_input_password">Senha</string>
+    <string name="login_text_forgot">Esqueci a senha</string>
+    <string name="login_content_logo">Logo</string>
     <string name="back">Voltar</string>
     <string name="register_button_back">Voltar</string>
 
     <!-- Dados pessoais -->
-    <string name="register_dados_pessoais">Dados Pessoais</string>
-    <string name="register_nome">Nome completo</string>
-    <string name="register_data_nascimento">Data de nascimento</string>
+    <string name="register_personal_data">Dados Pessoais</string>
+    <string name="register_name">Nome completo</string>
+    <string name="register_birthday">Data de nascimento</string>
     <string name="register_cpf">CPF</string>
     <string name="register_email">E-mail</string>
-    <string name="register_confirm_email">Confirmar E-mail</string>
-    <string name="register_confirme_email">Confirme seu e-mail</string>
-    <string name="register_telefone">Número com DD</string>
-    <string name="register_concordar_termo">Li e estou de acordo com o </string>
-    <string name="register_politica_de_privacidade">Termo de Uso e Política de Privacidade</string>
-    <string name="register_button_continuar">CONTINUAR</string>
+    <!--<string name="register_confirm_email">Confirmar E-mail</string>-->
+    <string name="register_input_confirm_email">Confirme seu e-mail</string>
+    <string name="register_phone">Número com DDD</string>
+    <string name="register_agree_term">Li e estou de acordo com o </string>
+    <string name="register_privacy_policy">Termo de Uso e Política de Privacidade</string>
+    <string name="register_button_continue">CONTINUAR</string>
 
     <!-- Endereço -->
     <string name="register_address">Endereço Pessoal</string>
     <string name="register_address_cep">CEP</string>
-    <string name="register_address_endereco">Endereço</string>
-    <string name="register_address_numero">Nº</string>
-    <string name="register_address_complemento">Complemento</string>
-    <string name="register_address_bairro">Bairro</string>
-    <string name="register_address_cidade">Cidade</string>
-    <string name="register_address_estado">Estado</string>
+    <string name="register_input_address">Endereço</string>
+    <string name="register_address_number">Nº</string>
+    <string name="register_address_complement">Complemento</string>
+    <string name="register_address_district">Bairro</string>
+    <string name="register_address_city">Cidade</string>
+    <string name="register_address_state">Estado</string>
 
     <!-- Senha -->
     <string name="register_password_user">Crie uma senha</string>
@@ -91,6 +95,23 @@
     <string name="register_payment_add_bank">Adicionar conta bancária</string>
     <string name="back_button">Botão Voltar</string>
 
+    <string name="register_term_title">Os Termos e a política de Privacidade \n do WhatsApp serão atualizados.</string>
+    <string name="register_term_subtitle_one">Atualizações importantes</string>
+    <string name="register_term_subtitle_two">Lei Geral de Proteção de Dados.</string>
+    <string name="register_term_text_paragraph">Em caso de incidentes de segurança que possa gerar risco ou dano relevante para você ou qualquer um de nossos usuários/clientes, comunicaremos aos afetados e a Autoridade Nacional de Proteção de Dados sobre o ocorrido, em consonância com as disposições da Lei Geral de Proteção de Dados.</string>
+    <string name="register_term_text_paragraph_one">I – Quaisquer consequências decorrentes da negligência, imprudência ou imperícia dos usuários em relação a seus dados individuais. Garantimos e nos responsabilizamos apenas pela segurança dos processos de tratamento de dados e do cumprimento das finalidades descritas no presente instrumento. Destacamos que a responsabilidade em relação à confidencialidade dos dados de acesso é do usuário.</string>
+    <string name="register_term_text_paragraph_two">II – Ações maliciosas
+        <font color="#0451FF">de terceiros, como ataque</font>
+        de hackers, exceto se comprovada conduta culposa ou deliberada da (nome empresarial simplificado).
+        Destacamos que em caso de incidentes de segurança que possam gerar risco ou dano relevante para você ou qualquer um de nossos usuários/clientes, comunicaremos aos afetados e a Autoridade Nacional de Proteção de Dados sobre o ocorrido e cumpriremos as providências necessárias.
+    </string>
+    <string name="register_term_text_paragraph_three">
+        III – Inveracidade das informações inseridas pelo usuário/cliente nos registros necessários para a utilização dos serviços da (
+        <font color="#0451FF">nome empresarial simplificado</font>
+        ); quaisquer consequências.
+    </string>
+    <string name="register_term_button">Concordar</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -115,5 +136,37 @@
     <string name="home_text_person_2">Shams Jans</string>
     <string name="home_text_rating">4.8</string>
     <string name="home_text_details">Details</string>
+
+    <string name="forgot_password_title">Esqueceu a Senha?</string>
+    <string name="forgot_password_subtitle">Informe seu email e enviaremos para você as \n instruções para redefinir sua senha.</string>
+    <string name="forgout_email">E-mail</string>
+    <string name="button_next">CONTINUAR</string>
+
+    <string name="forgot_check_title">Verifique seu E-mail</string>
+    <string name="forgot_check_subtitle">Acamos de enviar um código para o seu \n E-mail registrado</string>
+    <string name="forgout_check_text_timer">00:36</string>
+    <string name="forgot_check_text_layout">Não recebeu um código?</string>
+    <string name="forgot_check_text_resend">Reenviar</string>
+    <string name="button_check">VERIFICAR</string>
+
+    <string name="forgot_reset_title">Redefina sua senha</string>
+    <string name="forgot_reset_subtitle">Preencha os campos abaixo</string>
+    <string name="forgot_reset_password">Nova Senha</string>
+    <string name="forgot_reset_confirm_password">Confirme sua  Senha</string>
+    <string name="forgot_reset_button">REDEFINIR SENHA</string>
+
+    <string name="forgot_sucess_title">Redefinido com sucesso</string>
+    <string name="forgot_sucess_subtitle">Agora você pode fazer login na sua conta</string>
+    <string name="forgot_sucess_button">CONECTE-SE AGORA</string>
+
+    <string name="cardpay_text_title">Formas de Pagamento</string>
+    <string name="cardpay_type_card">Escolha uma das opções:</string>
+    <string name="cardpay_type_card_debit">Débito</string>
+    <string name="cardpay_type_card_credit">Crédito</string>
+    <string name="cardpay_input_name">Nome Completo</string>
+    <string name="cardpay_input_card_number">Número do Cartão</string>
+    <string name="cardpay_input_validity">Validade</string>
+    <string name="cardpay_input_cvv">CVV</string>
+    <string name="cardpay_account_created">Cadastro Realizado com Sucesso!</string>
 
 </resources>

@@ -3,9 +3,9 @@ package com.example.freela.presentation
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
-import androidx.core.widget.doOnTextChanged
 import com.google.android.material.textfield.TextInputEditText
 
+val NON_DIGITS = Regex("\\D")
 private val NON_DIGIT_REGEX = Regex("[^\\d]")
 private val VALID_INPUT_CHARS = Regex("[^\\dX-]")
 private val ACCOUNT_VALIDATION_REGEX = Regex("^\\d{1,8}(-[\\dX])?$")
@@ -14,27 +14,48 @@ private val ACCOUNT_VALIDATION_REGEX = Regex("^\\d{1,8}(-[\\dX])?$")
 fun TextInputEditText.addDateMask() {
     this.addTextChangedListener(object : TextWatcher {
         private var isUpdating = false
+        private var oldText = ""
 
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-        override fun afterTextChanged(s: Editable?) {}
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            oldText = s?.toString() ?: ""
+        }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             if (isUpdating) return
             isUpdating = true
 
-            val clean = s.toString().replace(NON_DIGIT_REGEX, "")
-            val formatted = StringBuilder()
+            val newText = s?.toString() ?: ""
 
+            // Detecta se o usuário está apagando
+            val isDeleting = oldText.length > newText.length
+
+            // Remove tudo que não é número
+            val clean = newText.replace(NON_DIGIT_REGEX, "")
+
+            val formatted = StringBuilder()
             for (i in clean.indices) {
                 formatted.append(clean[i])
-                if (i == 1 || i == 3) formatted.append('/')
+                if ((i == 1 || i == 3) && i != clean.lastIndex) {
+                    formatted.append('/')
+                }
             }
 
             val masked = if (formatted.length > 10) formatted.substring(0, 10) else formatted.toString()
-            this@addDateMask.setText(masked)
-            this@addDateMask.setSelection(masked.length)
+
+            // Atualiza o texto apenas se ele for diferente
+            if (masked != newText) {
+                this@addDateMask.setText(masked)
+                // Reposiciona o cursor corretamente
+                this@addDateMask.setSelection(
+                    if (isDeleting) masked.length.coerceAtMost(newText.length)
+                    else masked.length
+                )
+            }
+
             isUpdating = false
         }
+
+        override fun afterTextChanged(s: Editable?) {}
     })
 }
 
@@ -42,6 +63,7 @@ fun TextInputEditText.addDateMask() {
 fun TextInputEditText.addCpfMask() {
     this.addTextChangedListener(object : TextWatcher {
         private var isUpdating = false
+        private val mask = "###.###.###-##"
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
         override fun afterTextChanged(s: Editable?) {}
@@ -50,18 +72,26 @@ fun TextInputEditText.addCpfMask() {
             if (isUpdating) return
             isUpdating = true
 
-            val clean = s.toString().replace(NON_DIGIT_REGEX, "")
-            val formatted = StringBuilder()
+            val clean = s.toString().replace(NON_DIGIT_REGEX, "") // remove tudo que não é dígito
 
-            for (i in clean.indices) {
-                formatted.append(clean[i])
-                if (i == 2 || i == 5) formatted.append('.')
-                if (i == 8) formatted.append('-')
+            var masked = ""
+            var i = 0
+            for (m in mask.toCharArray()) {
+                if (m == '#') {
+                    if (i >= clean.length) break
+                    masked += clean[i]
+                    i++
+                } else {
+                    if (i < clean.length) masked += m
+                }
             }
 
-            val masked = if (formatted.length > 14) formatted.substring(0, 14) else formatted.toString()
-            this@addCpfMask.setText(masked)
-            this@addCpfMask.setSelection(masked.length)
+            // Só atualiza se o texto realmente mudou
+            if (masked != s.toString()) {
+                setText(masked)
+                setSelection(masked.length)
+            }
+
             isUpdating = false
         }
     })
@@ -71,6 +101,7 @@ fun TextInputEditText.addCpfMask() {
 fun TextInputEditText.addPhoneMask() {
     this.addTextChangedListener(object : TextWatcher {
         private var isUpdating = false
+        private val mask = "(##) #####-####"
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
         override fun afterTextChanged(s: Editable?) {}
@@ -80,20 +111,24 @@ fun TextInputEditText.addPhoneMask() {
             isUpdating = true
 
             val clean = s.toString().replace(NON_DIGIT_REGEX, "")
-            val formatted = StringBuilder()
 
-            for (i in clean.indices) {
-                when (i) {
-                    0 -> formatted.append("(").append(clean[i])
-                    1 -> formatted.append(clean[i]).append(") ")
-                    6 -> formatted.append(clean[i]).append("-")
-                    else -> formatted.append(clean[i])
+            var masked = ""
+            var i = 0
+            for (m in mask.toCharArray()) {
+                if (m == '#') {
+                    if (i >= clean.length) break
+                    masked += clean[i]
+                    i++
+                } else {
+                    if (i < clean.length) masked += m
                 }
             }
 
-            val masked = if (formatted.length > 15) formatted.substring(0, 15) else formatted.toString()
-            this@addPhoneMask.setText(masked)
-            this@addPhoneMask.setSelection(masked.length)
+            if (masked != s.toString()) {
+                setText(masked)
+                setSelection(masked.length)
+            }
+
             isUpdating = false
         }
     })
@@ -103,34 +138,35 @@ fun TextInputEditText.addPhoneMask() {
 fun TextInputEditText.addCepMask() {
     this.addTextChangedListener(object : TextWatcher {
         private var isUpdating = false
-
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-        override fun afterTextChanged(s: Editable?) {}
-
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable?) {
             if (isUpdating) return
             isUpdating = true
 
-            val clean = s.toString().replace(NON_DIGIT_REGEX, "")
+            val clean = s.toString().replace(NON_DIGITS, "")
             val formatted = StringBuilder()
+            val digits = if (clean.length > 8) clean.substring(0, 8) else clean
 
-            for (i in clean.indices) {
-                formatted.append(clean[i]) // 1. Sempre anexa o dígito
-
-                // 2. Verifica se:
-                //    a) i é igual a 4 (depois do 5º dígito) E
-                //    b) ainda há dígitos após este (para não colocar hífen no final)
-                if (i == 4 && i < clean.length - 1) {
-                    formatted.append("-") // 3. Anexa o hífen
-                }
+            for (i in digits.indices) {
+                formatted.append(digits[i])
+                if (i == 4 && i < digits.length - 1) formatted.append("-")
             }
 
+            val masked = formatted.toString()
+            this@addCepMask.setText(masked)
+            this@addCepMask.setSelection(masked.length)
+            isUpdating = false
+        }
+    })
+/*
             val masked = if (formatted.length > 9) formatted.substring(0, 9) else formatted.toString()
             this@addCepMask.setText(masked)
             this@addCepMask.setSelection(masked.length)
             isUpdating = false
         }
     })
+ */
 }
 
 /**
@@ -186,4 +222,86 @@ fun TextInputEditText.applyAccountMask() {
         }
     })
 }
+// Máscara de Número de Cartão — formato 0000 0000 0000 0000
+fun TextInputEditText.addCardNumberMask() {
+    this.addTextChangedListener(object : TextWatcher {
+        private var isUpdating = false
 
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+        override fun afterTextChanged(s: Editable?) {
+            if (isUpdating) return
+            isUpdating = true
+
+            // remove tudo que não for número
+            val clean = s.toString().replace(NON_DIGITS, "")
+
+            val formatted = StringBuilder()
+            for (i in clean.indices) {
+                formatted.append(clean[i])
+                // adiciona espaço a cada 4 dígitos, exceto no final
+                if ((i + 1) % 4 == 0 && i + 1 < clean.length) {
+                    formatted.append(" ")
+                }
+            }
+
+            // atualiza o texto no input
+            val masked = formatted.toString()
+            if (masked != s.toString()) {
+                this@addCardNumberMask.setText(masked)
+                this@addCardNumberMask.setSelection(masked.length) // coloca o cursor no final
+            }
+
+            isUpdating = false
+        }
+    })
+}
+// Máscara de data — formato MM/yyyy
+fun TextInputEditText.addDateValidityMask() {
+    this.addTextChangedListener(object : TextWatcher {
+        private var isUpdating = false
+        private var oldText = ""
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            oldText = s?.toString() ?: ""
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            if (isUpdating) return
+            isUpdating = true
+
+            val newText = s?.toString() ?: ""
+
+            // Detecta se o usuário está apagando
+            val isDeleting = oldText.length > newText.length
+
+            // Remove tudo que não é número
+            val clean = newText.replace(NON_DIGIT_REGEX, "")
+
+            val formatted = StringBuilder()
+            for (i in clean.indices) {
+                formatted.append(clean[i])
+                if ((i == 1) && i != clean.lastIndex) {
+                    formatted.append('/')
+                }
+            }
+
+            val masked = if (formatted.length > 5) formatted.substring(0, 5) else formatted.toString()
+
+            // Atualiza o texto apenas se ele for diferente
+            if (masked != newText) {
+                this@addDateValidityMask.setText(masked)
+                // Reposiciona o cursor corretamente
+                this@addDateValidityMask.setSelection(
+                    if (isDeleting) masked.length.coerceAtMost(newText.length)
+                    else masked.length
+                )
+            }
+
+            isUpdating = false
+        }
+
+        override fun afterTextChanged(s: Editable?) {}
+    })
+}

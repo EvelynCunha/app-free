@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.activities.CardPayActivity">
+
+    <ImageView
+        android:id="@+id/card_Pay_Button_Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_left_blue" />
+
+    <TextView
+        android:id="@+id/card_Pay_Text_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="42dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="@string/cardpay_text_title"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_Pay_Button_Back" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_Card_Pay"
+        android:name="com.example.freela.presentation.fragments.CardPayFrontFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        tools:layout="@layout/fragment_card_pay_front"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_Pay_Text_Title" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_Pay_Input_Type_Card"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/dark_text_grey"
+        android:textColorHint="@color/dark_text_grey"
+        app:endIconDrawable="@drawable/arrow_down_blue"
+        app:endIconTint="@color/blue"
+        app:errorEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_Card_Pay">
+
+        <AutoCompleteTextView
+            android:id="@+id/dropdown_Type_Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:popupBackground="@drawable/bg_dropdown_list"
+            android:background="@drawable/bg_input_primary"
+            android:focusable="false"
+            android:hint="@string/cardpay_type_card"
+            android:inputType="none"
+            android:textColor="@color/grey"
+            android:textColorHint="@color/grey" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_Pay_Input_Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        app:hintTextColor="@color/dark_text_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_Pay_Input_Type_Card">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/card_Pay_Edit_Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input_primary"
+            android:hint="@string/cardpay_input_name"
+            android:inputType="textCapCharacters"
+            android:maxLength="24"
+            android:textColor="@color/grey" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_Pay_Input_Card_Number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        app:hintTextColor="@color/dark_text_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_Pay_Input_Name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/card_Pay_Edit_Card_Number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input_primary"
+            android:hint="@string/cardpay_input_card_number"
+            android:inputType="number"
+            android:maxLength="19"
+            android:textColor="@color/grey" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_Pay_Input_Card_Validity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="224dp"
+        app:hintTextColor="@color/dark_text_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_Pay_Input_Card_Number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/card_Pay_Edit_Card_Validity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input_primary"
+            android:hint="@string/cardpay_input_validity"
+            android:inputType="date"
+            android:maxLength="5"
+            android:textColor="@color/grey" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_Pay_Input_Card_Cvv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="214dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        app:hintTextColor="@color/dark_text_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_Pay_Input_Card_Number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/card_Pay_Edit_Card_Cvv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input_primary"
+            android:hint="@string/cardpay_input_cvv"
+            android:inputType="number"
+            android:maxLength="3"
+            android:textColor="@color/grey" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_Next_Card_Pay"
+        style="@style/button_primary_style"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/register_button_continue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_Pay_Input_Card_Validity" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

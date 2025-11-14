@@ -2,6 +2,7 @@ package com.example.freela.presentation.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
@@ -12,15 +13,21 @@ import com.example.freela.domain.usecase.LoginUseCase
 import com.example.freela.repository.auth.AuthRepository
 import com.example.freela.viewModel.LoginViewModel
 import com.example.freela.viewModel.LoginViewModelFactory
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import androidx.core.widget.addTextChangedListener
+
+import com.google.android.material.textfield.TextInputLayout
+
 
 class LoginActivity : ComponentActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var buttonBack: ImageView
     private val viewModel: LoginViewModel by viewModels {
         LoginViewModelFactory(LoginUseCase(AuthRepository(FirebaseAuth.getInstance())))
     }
@@ -38,10 +45,43 @@ class LoginActivity : ComponentActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        buttonBack = binding.buttonBack
+
+        setupFieldWatchers()
         setupListeners()
         observeViewModel()
-    }
 
+        buttonBack.setOnClickListener {
+            finish()
+        }
+
+    }
+    private fun setupFieldWatchers() {
+
+        binding.inputEmail.endIconMode = TextInputLayout.END_ICON_CUSTOM
+        binding.inputEmail.setEndIconDrawable(R.drawable.check)
+        binding.inputEmail.isEndIconVisible = false
+
+        binding.inputPassword.endIconMode = TextInputLayout.END_ICON_CUSTOM
+        binding.inputPassword.setEndIconDrawable(R.drawable.check)
+        binding.inputPassword.isEndIconVisible = false
+
+        // email
+        binding.etEmail.addTextChangedListener { s ->
+            val isNotEmpty = !s.isNullOrEmpty()
+            binding.inputEmail.isEndIconVisible = isNotEmpty
+        }
+
+        binding.etPassword.addTextChangedListener { s ->
+            val isNotEmpty = !s.isNullOrEmpty()
+            binding.inputPassword.isEndIconVisible = isNotEmpty
+        }
+
+        // também, se quiser forçar estado inicial:
+        binding.inputEmail.isEndIconVisible = !binding.etEmail.text.isNullOrEmpty()
+        binding.inputPassword.isEndIconVisible = !binding.etPassword.text.isNullOrEmpty()
+
+    }
     private fun setupListeners() {
         binding.btnLogin.setOnClickListener {
             debounceJob?.cancel()
@@ -58,7 +98,9 @@ class LoginActivity : ComponentActivity() {
         binding.tvRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+
     }
+
 
     private fun handleLogin() {
         val email = binding.etEmail.text.toString().trim()
@@ -70,7 +112,9 @@ class LoginActivity : ComponentActivity() {
         }
 
         viewModel.login(email, password)
+
     }
+
 
     private fun observeViewModel() {
         lifecycleScope.launch {
@@ -99,4 +143,5 @@ class LoginActivity : ComponentActivity() {
             }
         }
     }
+
 }

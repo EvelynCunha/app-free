@@ -58,9 +58,10 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text=""
-                android:textColorHint="?attr/colorOnTertiary"
                 android:textSize="16sp"
+                android:textColor="@color/dark_text_grey"
                 app:errorEnabled="false"
+                app:hintTextColor="@color/grey"
                 app:drawableEndCompat="@drawable/arrow_down_blue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +76,8 @@
             android:contentDescription="@string/bank_description_agency"
             android:layout_marginTop="28dp"
             android:layout_marginEnd="16dp"
+            android:textColorHint="@color/grey"
+            app:hintTextColor="@color/grey"
             app:errorEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,10 +89,9 @@
                 android:layout_height="match_parent"
                 android:inputType="number"
                 android:maxLength="4"
-                android:textColor="?attr/colorOnTertiary"
                 android:background="@drawable/bg_input_primary"
                 android:hint="@string/bank_hint_agency"
-                android:textColorHint="@color/dark_text_grey"/>
+                android:textColor="@color/dark_text_grey"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,6 +103,8 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="16dp"
             app:errorEnabled="false"
+            android:textColorHint="@color/grey"
+            app:hintTextColor="@color/grey"
             android:contentDescription="@string/bank_description_account"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,10 +115,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:maxLength="10"
-                android:textColor="?attr/colorOnTertiary"
+                android:textColor="@color/dark_text_grey"
                 android:background="@drawable/bg_input_primary"
-                android:hint="@string/bank_hint_account"
-                android:textColorHint="@color/dark_text_grey" />
+                android:hint="@string/bank_hint_account" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -129,8 +132,9 @@
             app:endIconDrawable="@drawable/arrow_down_blue"
             app:errorEnabled="false"
             app:endIconTint="@color/blue"
-            android:textColor="?attr/colorOnTertiary"
-            android:textColorHint="?attr/colorOnTertiary"
+            android:textColorHint="@color/grey"
+            app:hintTextColor="@color/grey"
+            android:textColor="@color/dark_text_grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bank_Input_Account">
@@ -140,11 +144,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_input_primary"
-                android:textColor="?attr/colorOnTertiary"
+                android:textColor="@color/dark_text_grey"
                 android:hint="@string/bank_hint_account_type"
                 android:focusable="false"
-                android:inputType="none"
-                android:textColorHint="?attr/colorOnTertiary"/>
+                android:inputType="none" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -182,6 +185,8 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="24dp"
             app:errorEnabled="false"
+            android:textColorHint="@color/grey"
+            app:hintTextColor="@color/grey"
             android:contentDescription="@string/bank_description_pix"
             app:layout_constraintBottom_toTopOf="@+id/bank_Button_Next"
             app:layout_constraintEnd_toEndOf="parent"
@@ -192,10 +197,9 @@
                 android:id="@+id/bank_Edit_Pix"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="?attr/colorOnTertiary"
+                android:textColor="@color/dark_text_grey"
                 android:background="@drawable/bg_input_primary"
-                android:hint="@string/bank_input_pix"
-                android:textColorHint="@color/dark_text_grey"/>
+                android:hint="@string/bank_input_pix"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -208,7 +212,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="46dp"
             android:contentDescription="@string/bank_description_button_next"
-            android:text="@string/register_button_continuar"
+            android:text="@string/register_button_continue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
